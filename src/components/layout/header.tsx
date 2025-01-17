@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toggle';
 
@@ -7,15 +7,15 @@ export function Header() {
     <header className="border-b">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          <Link to="/" className="font-semibold">
+          <Link href="/" className="font-semibold">
             Dictionary App
           </Link>
           <nav className="flex items-center gap-4">
             <Button variant="ghost" asChild>
-              <Link to="/dictionary">Dictionary</Link>
+              <Link href="/dictionary">Dictionary</Link>
             </Button>
             <Button variant="ghost" asChild>
-              <Link to="/settings">Settings</Link>
+              <Link href="/settings">Settings</Link>
             </Button>
           </nav>
         </div>
