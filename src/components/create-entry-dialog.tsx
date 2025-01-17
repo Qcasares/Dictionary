@@ -53,7 +53,7 @@ export function CreateEntryDialog({ dictionaryId }: CreateEntryDialogProps) {
     sample_values: '',
     metadata: [] as MetadataField[],
   });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -156,7 +156,7 @@ export function CreateEntryDialog({ dictionaryId }: CreateEntryDialogProps) {
                 value={formData.field_name}
                 onChange={(e) => {
                   setFormData({ ...formData, field_name: e.target.value });
-                  setErrors(prev => ({ ...prev, field_name: undefined }));
+                  setErrors(({ field_name: _, ...rest }) => rest);
                 }}
                 placeholder="Enter field name (e.g., user_id)"
                 className={errors.field_name ? 'border-destructive' : ''}

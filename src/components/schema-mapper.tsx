@@ -13,7 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 
 export function SchemaMapper() {
-  const [sourceFields, setSourceFields] = useState([
+  const [sourceFields] = useState([
     { id: '1', name: 'user_id', type: 'string' },
     { id: '2', name: 'email', type: 'string' },
     { id: '3', name: 'created_at', type: 'datetime' },

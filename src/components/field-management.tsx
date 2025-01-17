@@ -1,9 +1,8 @@
 import { useState, useCallback } from 'react';
-import { Button } from '@/components/ui/button';
 import { ApiIntegration } from './api-integration';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Search, Plus } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { QualityMetrics } from './quality-metrics';
 import { QualityWorkflow } from './quality-workflow';
 import { CreateEntryDialog } from './create-entry-dialog';
@@ -38,7 +37,7 @@ export function FieldManagement({ dictionaryId, onViewHistory }: FieldManagement
   
   const debouncedSearch = useDebounce(searchTerm, 300);
 
-  const { data, isLoading, error, refetch, syncStatus, isOnline } = useDictionaryEntries({
+  const { data, refetch, syncStatus, isOnline } = useDictionaryEntries({
     dictionaryId,
     page,
     pageSize,
@@ -50,7 +49,6 @@ export function FieldManagement({ dictionaryId, onViewHistory }: FieldManagement
 
   const {
     containerRef,
-    visibleItems,
     totalHeight,
     offsetY,
     onScroll,
@@ -91,7 +89,7 @@ export function FieldManagement({ dictionaryId, onViewHistory }: FieldManagement
     refetch();
   }, [refetch]);
 
-  const renderTableRow = useCallback((entry: any, index: number) => (
+  const renderTableRow = useCallback((entry: any) => (
     <div className="flex items-center px-4 py-2 border-b">
       <div className="flex-1 font-medium">{entry.field_name}</div>
       <div className="flex-1">

@@ -8,9 +8,9 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ConnectorList } from './connector-list';
-import { SchemaMapper } from './schema-mapper';
-import { ApiSettings } from './api-settings';
+import { ConnectorList } from './connector-list.tsx';
+import { SchemaMapper } from './schema-mapper.tsx';
+import { ApiSettings } from './api-settings.tsx';
 
 export function ApiIntegration() {
   const [open, setOpen] = useState(false);

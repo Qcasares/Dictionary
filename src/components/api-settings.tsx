@@ -20,6 +20,15 @@ export function ApiSettings() {
     });
   };
 
+  const handleRegenerateApiKey = () => {
+    const newKey = `sk_${Math.random().toString(36).substring(2, 18)}`;
+    setApiKey(newKey);
+    toast({
+      title: 'Regenerated!',
+      description: 'New API key generated',
+    });
+  };
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
@@ -68,7 +77,11 @@ export function ApiSettings() {
                 <Copy className="h-4 w-4 mr-2" />
                 Copy
               </Button>
-              <Button variant="outline" size="sm">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRegenerateApiKey}
+              >
                 Regenerate
               </Button>
             </div>
