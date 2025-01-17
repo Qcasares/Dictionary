@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from 'next-themes';
 import AppLayout from '@/components/layout/app-layout';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { Outlet } from 'react-router-dom';
 
 export default function App() {
   const { theme, setTheme } = useStore();
@@ -11,7 +12,7 @@ export default function App() {
     <ThemeProvider attribute="class" defaultTheme={theme} enableSystem>
       <TooltipProvider>
         <AppLayout>
-          {/* Main application content */}
+          <Outlet />
         </AppLayout>
         <Toaster position="top-center" />
       </TooltipProvider>

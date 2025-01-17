@@ -5,9 +5,18 @@ export function ApiIntegration() {
   const { apiKey, setApiKey } = useStore();
   const { connect, disconnect } = useSocketManager();
 
+  const handleConnect = () => {
+    connect(apiKey);
+  };
+
+  const handleDisconnect = () => {
+    disconnect();
+  };
+
   return (
     <div>
-      {/* API integration UI */}
+      <button onClick={handleConnect}>Connect</button>
+      <button onClick={handleDisconnect}>Disconnect</button>
     </div>
   );
 }
