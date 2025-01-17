@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
+import { ApiIntegration } from './api-integration';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Search, Plus } from 'lucide-react';
@@ -141,6 +142,7 @@ export function FieldManagement({ dictionaryId, onViewHistory }: FieldManagement
           <SearchDialog onSearch={handleAdvancedFilters} />
         </div>
         <div className="flex items-center gap-2">
+          <ApiIntegration />
           <SyncIndicator
             isSyncing={syncStatus.isSyncing}
             isOnline={isOnline}
