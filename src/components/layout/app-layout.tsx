@@ -1,5 +1,5 @@
-import { Header } from '@/components/layout/header';
-import { Footer } from '@/components/layout/footer';
+import { Header } from './header';
+import { Footer } from './footer';
 import { ReactNode } from 'react';
 
 interface AppLayoutProps {

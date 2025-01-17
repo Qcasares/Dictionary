@@ -1,8 +1,8 @@
-import { useStore } from '@/state/store';
-import { Toaster } from '@/components/ui/sonner';
+import { useStore } from './state/store';
+import { Toaster } from './components/ui/sonner';
 import { ThemeProvider } from 'next-themes';
-import AppLayout from '@/components/layout/app-layout';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import AppLayout from './components/layout/app-layout';
+import { TooltipProvider } from './components/ui/tooltip';
 import { Outlet } from 'react-router-dom';
 
 export default function App() {
