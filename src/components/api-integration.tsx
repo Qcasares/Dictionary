@@ -1,50 +1,41 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ConnectorList } from './connector-list.tsx';
-import { SchemaMapper } from './schema-mapper.tsx';
-import { ApiSettings } from './api-settings.tsx';
+import { useStore } from '@/store/store';
+import { useSocketManager } from '@/lib/socket-manager';
+import { useToast } from '@/hooks/use-toast';
 
 export function ApiIntegration() {
-  const [open, setOpen] = useState(false);
+  const { apiKey, setApiKey } = useStore();
+  const { toast } = useToast();
+  const { connect, disconnect } = useSocketManager();
+
+  const handleConnect = () => {
+    if (!apiKey) {
+      toast({
+        title: 'Error',
+        description: 'API key is required',
+        variant: 'destructive',
+      });
+      return;
+    }
+    connect(apiKey);
+  };
+
+  const handleDisconnect = () => {
+    disconnect();
+  };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline">API Integration</Button>
-      </DialogTrigger>
-      <DialogContent className="max-w-4xl">
-        <DialogHeader>
-          <DialogTitle>API Integration Hub</DialogTitle>
-        </DialogHeader>
-        
-        <Tabs defaultValue="connectors" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="connectors">Connectors</TabsTrigger>
-            <TabsTrigger value="mapping">Schema Mapping</TabsTrigger>
-            <TabsTrigger value="api">API Settings</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="connectors">
-            <ConnectorList />
-          </TabsContent>
-          
-          <TabsContent value="mapping">
-            <SchemaMapper />
-          </TabsContent>
-          
-          <TabsContent value="api">
-            <ApiSettings />
-          </TabsContent>
-        </Tabs>
-      </DialogContent>
-    </Dialog>
+    <div className="space-y-4">
+      <div className="flex items-center gap-4">
+        <input
+          type="text"
+          value={apiKey}
+          onChange={(e) => setApiKey(e.target.value)}
+          placeholder="Enter API key"
+          className="flex-1"
+        />
+        <button onClick={handleConnect}>Connect</button>
+        <button onClick={handleDisconnect}>Disconnect</button>
+      </div>
+    </div>
   );
 }

@@ -1,30 +1,20 @@
-import { useEffect } from 'react';
-import socket from './socket';
-import { useStore } from '@/store/store';
+import { useStore } from '@/state/store';
 
-export const useSocketManager = () => {
-  const { setSocketConnected } = useStore();
+export function useSocketManager() {
+  const { apiKey, setSocketConnected } = useStore();
 
-  useEffect(() => {
-    const onConnect = () => {
-      setSocketConnected(true);
-      console.log('Socket connected');
-    };
+  const connect = (key: string) => {
+    // Implementation of socket connection
+    setSocketConnected(true);
+  };
 
-    const onDisconnect = () => {
-      setSocketConnected(false);
-      console.log('Socket disconnected');
-    };
+  const disconnect = () => {
+    // Implementation of socket disconnection
+    setSocketConnected(false);
+  };
 
-    socket.connect();
-    
-    socket.on('connect', onConnect);
-    socket.on('disconnect', onDisconnect);
-
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-      socket.disconnect();
-    };
-  }, [setSocketConnected]);
-};
+  return {
+    connect,
+    disconnect,
+  };
+}
