@@ -6,7 +6,8 @@ interface AppState {
   setMetadata: (metadata: MetadataField[]) => void;
   selectedEntry: string | null;
   setSelectedEntry: (entryId: string | null) => void;
-  // Add other global state as needed
+  socketConnected: boolean;
+  setSocketConnected: (connected: boolean) => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -14,4 +15,6 @@ export const useStore = create<AppState>((set) => ({
   setMetadata: (metadata) => set({ metadata }),
   selectedEntry: null,
   setSelectedEntry: (entryId) => set({ selectedEntry: entryId }),
+  socketConnected: false,
+  setSocketConnected: (connected) => set({ socketConnected: connected }),
 }));
