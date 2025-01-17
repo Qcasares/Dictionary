@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
+import type { AppProps } from 'next/app';
 import { useSocketManager } from '@/lib/socket-manager';
 import { useStore } from '@/store/store';
 import { Toaster } from '@/components/ui/sonner';
 import { ThemeProvider } from 'next-themes';
-import Router from '@/router';
 
-function App() {
+export default function App({ Component, pageProps }: AppProps) {
   useSocketManager();
   const { socketConnected } = useStore();
 
@@ -15,10 +15,8 @@ function App() {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <Router />
+      <Component {...pageProps} />
       <Toaster position="top-center" />
     </ThemeProvider>
   );
 }
-
-export default App;
